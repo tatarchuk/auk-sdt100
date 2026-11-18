@@ -9,12 +9,12 @@ public class RandomAccessFileUtils {
 
     public static void runReadOnlyExample(String filePath, int position) throws IOException {
         try (RandomAccessFile rFile = new RandomAccessFile(filePath, "r")) {
-            // Jump directly to byte index 6
+            // Jump directly to byte index
             rFile.seek(position);
 
             // Read the rest of the line from the current pointer
             String result = rFile.readLine();
-            System.out.println("Read from index 6: " + result); // Output: Disk World!
+            System.out.println("Read from index " + position + ": " + result); // Output: Disk World!
         }
     }
 
@@ -23,10 +23,9 @@ public class RandomAccessFileUtils {
             // Write initial text at byte 0
             rwFile.writeBytes("Hello Java World!");
 
-            // Move the file pointer to byte index 6 (the start of "Java")
+            // Move the file pointer to byte index
             rwFile.seek(position);
 
-            // Overwrite "Java" with "Disk" (both are 4 bytes)
             rwFile.writeBytes("Disk");
 
             System.out.println("File size: " + rwFile.length() + " bytes");
